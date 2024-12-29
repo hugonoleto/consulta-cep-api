@@ -17,7 +17,7 @@ services:
     image: wiremock/wiremock:2.32.0
     container_name: wiremock
     ports:
-      - "8081:8081"
+      - "8080:8080"
     volumes:
       - ./wiremock:/home/wiremock
 
