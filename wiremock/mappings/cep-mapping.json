@@ -1,0 +1,43 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/cep/.*"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "cep-sucesso-response.json",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/cep/99999-999"
+      },
+      "response": {
+        "status": 404,
+        "bodyFileName": "cep-erro-response.json",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/cep/99999999"
+      },
+      "response": {
+        "status": 404,
+        "bodyFileName": "cep-erro-response.json",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    }
+  ]
+}
