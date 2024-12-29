@@ -11,7 +11,7 @@ public class ConsultaCepService {
 
     private final CepClient cepClient;
 
-    public EnderecoResponse consultaCep(String cep) {
+    public EnderecoResponse consulta(String cep) {
         return cepClient.consultaCep(cep);
     }
 
