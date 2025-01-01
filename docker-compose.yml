@@ -1,8 +1,6 @@
-version: '3.8'
-
 services:
   postgres:
-    image: postgres:15
+    image: postgres:16.6
     container_name: postgres
     environment:
       POSTGRES_DB: consulta_cep_db
@@ -14,7 +12,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
   wiremock:
-    image: wiremock/wiremock:2.32.0
+    image: wiremock/wiremock:3.10.0-1
     container_name: wiremock
     ports:
       - "8080:8080"

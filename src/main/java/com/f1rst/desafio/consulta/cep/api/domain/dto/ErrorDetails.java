@@ -1,4 +1,4 @@
-package com.f1rst.desafio.consulta.cep.api.model;
+package com.f1rst.desafio.consulta.cep.api.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

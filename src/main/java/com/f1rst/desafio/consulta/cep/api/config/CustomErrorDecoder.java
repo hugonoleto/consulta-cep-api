@@ -1,6 +1,6 @@
 package com.f1rst.desafio.consulta.cep.api.config;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.f1rst.desafio.consulta.cep.api.util.JsonUtils;
 import com.f1rst.desafio.consulta.cep.api.exception.CepNotFoundException;
 import feign.Response;
 import feign.codec.ErrorDecoder;
@@ -12,13 +12,12 @@ import java.util.Map;
 public class CustomErrorDecoder implements ErrorDecoder {
 
     private final ErrorDecoder defaultErrorDecoder = new Default();
-    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
     public Exception decode(String methodKey, Response response) {
         if (response.status() == HttpStatus.NOT_FOUND.value()) {
             try {
-                Map<String, Object> errorMap = objectMapper.readValue(response.body().asInputStream(), Map.class);
+                Map<String, Object> errorMap = JsonUtils.converteParaMap(response.body().asInputStream());
                 String errorMessage = (String) errorMap.get("message");
                 return new CepNotFoundException(errorMessage);
             } catch (IOException e) {

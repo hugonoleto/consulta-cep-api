@@ -2,8 +2,8 @@ package com.f1rst.desafio.consulta.cep.api.controller;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-import com.f1rst.desafio.consulta.cep.api.client.model.EnderecoResponse;
-import com.f1rst.desafio.consulta.cep.api.model.ErrorDetails;
+import com.f1rst.desafio.consulta.cep.api.domain.dto.EnderecoResponse;
+import com.f1rst.desafio.consulta.cep.api.domain.dto.ErrorDetails;
 import com.f1rst.desafio.consulta.cep.api.service.ConsultaCepService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @RequestMapping(path = "/api/consulta-cep", produces = APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor
 @Slf4j
-public class ConsultaCepController {
+public class CepController {
 
     private final ConsultaCepService consultaCepService;
 

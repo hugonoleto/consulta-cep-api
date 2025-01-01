@@ -9,10 +9,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class CepValidationAspect {
 
-    @Before("execution(* com.f1rst.desafio.consulta.cep.api.service.ConsultaCepService.consultaCep(..)) && args(cep)")
+    private static final String PADRAO_CEP_8_DIGITOS = "\\d{8}";
+    private static final String PADRAO_CEP_5_DIGITOS_HIFEN_3_DIGITOS = "\\d{5}-\\d{3}";
+
+    @Before("execution(* com.f1rst.desafio.consulta.cep.api.service.ConsultaCepService.consulta(..)) && args(cep)")
     public void valida(String cep) {
-        if (!cep.matches("\\d{8}") && !cep.matches("\\d{5}-\\d{3}")) {
-            throw new CepFormatException("CEP deve conter 8 dígitos ou 5 dígitos seguidos de hífen e mais 3 dígitos");
+        if (!cep.matches(PADRAO_CEP_8_DIGITOS) && !cep.matches(PADRAO_CEP_5_DIGITOS_HIFEN_3_DIGITOS)) {
+            throw new CepFormatException("CEP deve conter 8 dígitos numéricos ou 5 dígitos numéricos " +
+                    "seguidos de hífen e mais 3 dígitos numéricos");
         }
     }
 
