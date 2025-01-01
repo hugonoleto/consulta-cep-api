@@ -5,7 +5,7 @@ import static com.f1rst.desafio.consulta.cep.api.domain.TipoLog.RESPONSE;
 
 import com.f1rst.desafio.consulta.cep.api.domain.TipoLog;
 import com.f1rst.desafio.consulta.cep.api.domain.entity.ConsultaCepLog;
-import com.f1rst.desafio.consulta.cep.api.repository.ConsultaCepLogRepository;
+import com.f1rst.desafio.consulta.cep.api.service.SalvaLogService;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -30,7 +30,7 @@ import java.util.regex.Pattern;
 @RequiredArgsConstructor
 public class LoggingFilter implements Filter {
 
-    private final ConsultaCepLogRepository consultaCepLogRepository;
+    private final SalvaLogService salvaLogService;
 
     private static final String ENDPOINT_CEP_PADRAO = "^/api/consulta-cep/.+";
     private static final String EMPTY_RESPONSE = "{}";
@@ -108,7 +108,7 @@ public class LoggingFilter implements Filter {
                 .response(responseContent)
                 .build();
 
-        consultaCepLogRepository.save(log);
+        salvaLogService.salva(log);
     }
 
     private boolean isEndpointConsultaCep(String requestURI) {
