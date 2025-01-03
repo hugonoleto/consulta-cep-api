@@ -7,6 +7,7 @@ A **Consulta CEP API** é uma aplicação que permite a consulta de endereços a
 ## Desenho Técnico
 
 ### Arquitetura da Solução
+
 ![Arquitetura da Solução](https://github.com/user-attachments/assets/5d50264e-a082-46b6-9da8-0c1ebcac1cb7)
 
 ### Componentes Principais
@@ -89,6 +90,77 @@ O projeto inclui um arquivo `docker-compose.yml` para facilitar a configuração
 ### Swagger
 
 A documentação da API está disponível através do Swagger, acessível em `/swagger-ui.html`.
+
+## Instruções para Configuração do Wiremock
+
+### Cenários Criados
+
+1. **Cenário de Sucesso**: Qualquer CEP no formato `00000-000` a `99999-998` retornará uma resposta de sucesso.
+2. **Cenário de Erro**: Se o usuário digitar o CEP `99999-999`, será simulada uma resposta de erro.
+
+### Configuração do Wiremock
+
+#### Arquivo `wiremock/mappings/cep-mapping.json`
+
+```json
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/cep/.*"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "cep-sucesso-response.json",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "urlPathPattern": "/cep/99999-999"
+      },
+      "response": {
+        "status": 404,
+        "bodyFileName": "cep-erro-response.json",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    }
+  ]
+}
+```
+
+#### Arquivo `wiremock/__files/cep-sucesso-response.json`
+
+```json
+{
+  "cep": "01001-000",
+  "logradouro": "Praça da Sé",
+  "numero": "11",
+  "complemento": "lado ímpar",
+  "bairro": "Sé",
+  "cidade": "São Paulo",
+  "estado": "SP"
+}
+```
+
+#### Arquivo `wiremock/__files/cep-erro-response.json`
+
+```json
+{
+  "statusCode": 404,
+  "message": "Endereço não encontrado para o CEP fornecido"
+}
+```
+
+### Executando o Wiremock
+
+Para executar o Wiremock com essas configurações, certifique-se de que os arquivos estão no diretório correto e inicie o Wiremock. A aplicação estará pronta para simular os cenários de sucesso e erro conforme descrito.
 
 ## Executando a Aplicação
 
