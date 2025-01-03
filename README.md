@@ -8,7 +8,12 @@ A **Consulta CEP API** é uma aplicação que permite a consulta de endereços a
 
 ### Arquitetura da Solução
 
-![Arquitetura da Solução](https://github.com/user-attachments/assets/5d50264e-a082-46b6-9da8-0c1ebcac1cb7)
+![Arquitetura da Solução](https://github.com/user-attachments/assets/03c29211-f374-4477-a4d6-b1ac562f76e0)
+
+#### Legenda
+- ![#ffffcc](https://via.placeholder.com/15/ffffcc/000000?text=+) Fluxo consulta de CEP
+- ![#b9e0a5](https://via.placeholder.com/15/b9e0a5/000000?text=+) Fluxo consulta de Logs
+- ![#f19c99](https://via.placeholder.com/15/f19c99/000000?text=+) Compartilhado entre os dois fluxos
 
 ### Componentes Principais
 
@@ -24,6 +29,7 @@ A **Consulta CEP API** é uma aplicação que permite a consulta de endereços a
 1. **Consulta de CEP**: A aplicação permite consultar endereços a partir de um CEP fornecido.
 2. **Registro de Logs**: As consultas são registradas em um banco de dados, incluindo o horário da consulta e os dados retornados pela API.
 3. **Validação de CEP**: O formato do CEP é validado antes de realizar a consulta.
+4. **Consulta de Logs**: A aplicação permite consultar os logs das consultas de CEP, incluindo o horário da consulta e os dados retornados pela API.
 
 ## Tecnologias Utilizadas
 
